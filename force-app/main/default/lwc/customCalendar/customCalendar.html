@@ -1,0 +1,75 @@
+<template>
+    <lightning-card>
+        <div class="calendar-card">
+            <div class="slds-theme_shade slds-box">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-media slds-no-space slds-grow">
+                            <div class="slds-media__figure">
+                                <lightning-icon icon-name="standard:event" size="medium"></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <p class="slds-line-height_reset" data-aura-rendered-by="168:1393;a">Calendar</p>
+                                <h1 class="slds-page-header__title slds-m-right_small slds-align-middle slds-truncate" data-aura-rendered-by="170:1393;a">{calendarTitle}</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_2-of-3 slds-clearfix">
+                        <div class="slds-float_right slds-p-top_xx-small">
+                            <lightning-button-icon 
+                                variant="border-filled" 
+                                icon-name="utility:chevronleft" 
+                                value="previous"
+                                onclick={calendarActionsHandler}>
+                            </lightning-button-icon>
+
+                            <lightning-button-icon 
+                                variant="border-filled" 
+                                icon-name="utility:chevronright" 
+                                value="next" 
+                                onclick={calendarActionsHandler}>
+                            </lightning-button-icon>
+
+                            <lightning-button 
+                                label="Today" 
+                                class="slds-m-horizontal_small" 
+                                value="today" 
+                                onclick={calendarActionsHandler}>
+                            </lightning-button>
+
+                            <lightning-button-icon 
+                                variant="border-filled" 
+                                icon-name="utility:refresh" 
+                                class="slds-m-left_medium" 
+                                value="refresh" 
+                                onclick={calendarActionsHandler}>
+                            </lightning-button-icon>
+
+                            <lightning-button-menu alternative-text="Show menu" variant="border-filled" 
+                                icon-name="utility:event" class="slds-m-horizontal_small" 
+                                menu-alignment="auto" onselect={changeViewHandler}>
+                                <template for:each={viewOptions} for:item="menuItem">
+                                    <lightning-menu-item
+                                    key={menuItem.viewName}
+                                    value={menuItem.viewName}
+                                    label={menuItem.label}
+                                    checked={menuItem.checked}>
+                                </lightning-menu-item>
+                                </template>
+                            </lightning-button-menu>
+
+                            <lightning-button 
+                                label={buttonLabel} 
+                                class="slds-m-horizontal_small" 
+                                value="new" 
+                                onclick={calendarActionsHandler}>
+                            </lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fullcalendar"></div>
+    </lightning-card>
+</template>
